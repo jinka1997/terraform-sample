@@ -2,14 +2,14 @@
 resource "aws_instance" "sample" {
   ami                         = "ami-014612c2d9afaf1ac" #Microsoft Windows Server 2019 Base
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.sample.id
+  subnet_id                   = aws_subnet.public1.id
   associate_public_ip_address = true
   key_name                    = "ec2-sample"
   security_groups             = [aws_security_group.allow_rdp.id]
   ebs_block_device {
     device_name = "/dev/sda1"
     volume_size = 30
-    volume_type = "standard"
+    volume_type = "gp2"
   }
 
   tags = {

@@ -1,35 +1,35 @@
-resource "aws_vpc" "main" {
+resource "aws_vpc" "sample" {
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
   tags = {
-    Name = "tf-study-123"
+    Name = "ec2-sample"
   }
 }
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.sample.id #ここでVPCを指定することでアタッチされる
   tags = {
-    Name = "tf-study-123"
+    Name = "ec2-sample"
   }
 }
 
-resource "aws_subnet" "main" {
-  vpc_id     = aws_vpc.main.id
+resource "aws_subnet" "public1" {
+  vpc_id     = aws_vpc.sample.id
   cidr_block = "10.0.1.0/24"
-  availability_zone = "ap-northeast-1a"
+  #availability_zone = "ap-northeast-1a"
 
   tags = {
-    Name = "tf-study-123-public1"
+    Name = "ec2-sample-public1"
   }
 }
 
-resource "aws_main_route_table_association" "public-1a" {
-  vpc_id         = aws_vpc.main.id
+resource "aws_main_route_table_association" "public1" {
+  vpc_id         = aws_vpc.sample.id
   route_table_id = aws_route_table.r.id
 }
 
 resource "aws_route_table" "r" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.sample.id
 
   route {
     cidr_block        = "0.0.0.0/0"
@@ -37,6 +37,6 @@ resource "aws_route_table" "r" {
   }
 
   tags = {
-    Name = "tf-study-123"
+    Name = "ec2-sample-route-table"
   }
 }
