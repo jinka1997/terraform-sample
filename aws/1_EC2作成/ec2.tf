@@ -27,7 +27,7 @@ resource "aws_security_group" "allow_rdp" {
     from_port   = 3389
     to_port     = 3389
     protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] #ここを作業場所のIPアドレスに変える
   }
 
   tags = {
