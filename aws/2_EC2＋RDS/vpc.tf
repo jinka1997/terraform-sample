@@ -8,6 +8,7 @@ resource "aws_vpc" "sample" {
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.sample.id #ここでVPCを指定することでアタッチされる
+  depends_on = [aws_vpc.sample]
   tags = {
     Name = "rds-sample"
   }
