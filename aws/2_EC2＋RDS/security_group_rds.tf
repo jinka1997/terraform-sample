@@ -5,11 +5,20 @@ resource "aws_security_group" "rds_sample" {
 
     ingress  {
         description = "from ec2 only"
-        from_port   = 1433
-        to_port     = 1433
+        from_port   = 3306
+        to_port     = 3306
         protocol    = "TCP"
-        security_groups = [aws_security_group.ec2.name]
+        security_groups = [aws_security_group.ec2.id]
     } 
+
+    egress {
+      description = "all traffic"
+      from_port = 0
+      to_port = 0
+      protocol = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
     tags = {
         Name = "rds-sample"
     }

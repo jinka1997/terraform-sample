@@ -11,16 +11,14 @@ resource "aws_security_group" "ec2" {
     cidr_blocks = ["0.0.0.0/0"] #ここを作業場所のIPアドレスに変える
   }
 
-/*
-  egress  {
-    description     = "all traffic"
-    cidr_blocks     = ["0.0.0.0/0"]
-    from_port       = 0
-    to_port         = 65535
-    protocol        = "tcp"
-    security_groups = [ aws_security_group.ec2.id ]
-  } 
-*/
+  egress {
+    description = "all traffic"
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "rds-sample-ec2"
   }
