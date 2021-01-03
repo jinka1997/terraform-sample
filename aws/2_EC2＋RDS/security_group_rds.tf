@@ -8,9 +8,9 @@ resource "aws_security_group" "rds_sample" {
         from_port   = 1433
         to_port     = 1433
         protocol    = "TCP"
-        source_security_group_id = aws_security_group.ec2.id
+        security_groups = [aws_security_group.ec2.name]
     } 
-    tags {
+    tags = {
         Name = "rds-sample"
     }
 }
