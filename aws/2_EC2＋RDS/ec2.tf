@@ -1,6 +1,6 @@
 
 resource "aws_instance" "sample" {
-  ami                         = "ami-014612c2d9afaf1ac" #Microsoft Windows Server 2019 Base
+  ami                         = "ami-01748a72bed07727c" #Amazon Linux 2 AMI (HVM), SSD Volume Type 64 ビット x86
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public1.id
   associate_public_ip_address = true

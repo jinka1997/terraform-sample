@@ -4,9 +4,9 @@ resource "aws_security_group" "ec2" {
   vpc_id      = aws_vpc.sample.id
 
   ingress {
-    description = "Remote desktop"
-    from_port   = 3389
-    to_port     = 3389
+    description = "for ssh"
+    from_port   = 22
+    to_port     = 22
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"] #ここを作業場所のIPアドレスに変える
   }
