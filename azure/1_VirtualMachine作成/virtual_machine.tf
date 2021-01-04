@@ -1,4 +1,4 @@
-resource "azurerm_virtual_machine" "main" {
+resource "azurerm_virtual_machine" "sample" {
   name                  = "sample-vm"
   location              = azurerm_resource_group.samplevmgroup.location
   resource_group_name   = azurerm_resource_group.samplevmgroup.name
@@ -18,7 +18,7 @@ resource "azurerm_virtual_machine" "main" {
     version   = "latest"
   }
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "sample-os-disk"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"

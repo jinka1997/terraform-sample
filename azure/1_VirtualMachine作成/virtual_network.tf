@@ -29,7 +29,7 @@ resource "azurerm_network_security_group" "samplensg" {
         protocol                   = "Tcp"
         source_port_range          = "*"
         destination_port_range     = "3389"
-        source_address_prefix      = "*"
+        source_address_prefix      = "0.0.0.0/0" # 作業場所のIPアドレスに変更
         destination_address_prefix = "*"
     }
 
