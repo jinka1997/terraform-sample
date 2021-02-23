@@ -1,8 +1,8 @@
 
 resource "aws_instance" "sample" {
-  ami                         = "ami-01748a72bed07727c" #Amazon Linux 2 AMI (HVM), SSD Volume Type 64 ビット x86
+  ami                         = "ami-01748a72bed07727c"
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.public1.id
+  subnet_id                   = aws_subnet.public1a.id
   associate_public_ip_address = true
   key_name                    = "ec2-sample"
   security_groups             = [aws_security_group.ec2.id]
@@ -13,6 +13,6 @@ resource "aws_instance" "sample" {
   }
 
   tags = {
-    Name = "ec2-sample"
+    Name = "rds-sample"
   }
 }

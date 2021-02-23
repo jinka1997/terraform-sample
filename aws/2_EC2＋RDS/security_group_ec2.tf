@@ -1,14 +1,22 @@
 resource "aws_security_group" "ec2" {
-  name        = "ec2"
-  description = "Allow RDP from my place"
+  name        = "rds-sample-ec2"
+  description = "RDP from my home and http"
   vpc_id      = aws_vpc.sample.id
 
   ingress {
-    description = "for ssh"
-    from_port   = 22
-    to_port     = 22
+    description = "Remoter desktop"
+    from_port   = 3389
+    to_port     = 3389
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"] #ここを作業場所のIPアドレスに変える
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"] 
   }
 
   egress {
@@ -18,6 +26,7 @@ resource "aws_security_group" "ec2" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
 
   tags = {
     Name = "rds-sample-ec2"

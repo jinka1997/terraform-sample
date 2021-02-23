@@ -1,10 +1,10 @@
-resource "aws_security_group" "rds_sample" {
-    name        = "rds-sample"
+resource "aws_security_group" "rds" {
+    name        = "rds-sample-rds"
     description = "security group for rds"
     vpc_id      = aws_vpc.sample.id
 
     ingress  {
-        description = "from ec2 only"
+        description = "from ec2"
         from_port   = 3306
         to_port     = 3306
         protocol    = "TCP"
@@ -20,6 +20,6 @@ resource "aws_security_group" "rds_sample" {
     }
 
     tags = {
-        Name = "rds-sample"
+        Name = "rds-sample-rds"
     }
 }
