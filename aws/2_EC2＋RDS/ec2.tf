@@ -1,6 +1,6 @@
 
 resource "aws_instance" "sample" {
-  ami                         = "ami-01748a72bed07727c"
+  ami                         = "ami-014612c2d9afaf1ac" #Microsoft Windows Server 2019 Base
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public1a.id
   associate_public_ip_address = true
@@ -14,5 +14,14 @@ resource "aws_instance" "sample" {
 
   tags = {
     Name = "rds-sample"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      root_block_device,
+      ebs_block_device,
+      network_interface,
+      security_groups
+    ]
   }
 }

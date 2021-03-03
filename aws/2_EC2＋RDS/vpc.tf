@@ -77,12 +77,23 @@ resource "aws_route_table" "custom" {
   }
 }
 
+resource "aws_route_table_association" "public1a" {
+  subnet_id      = aws_subnet.public1a.id
+  route_table_id = aws_route_table.custom.id
+}
+
 resource "aws_route_table" "main" {
   vpc_id = aws_vpc.sample.id
 
   route {
     cidr_block        = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.nat.id
+    nat_gateway_id = aws_nat_gateway.nat.id
+  }
+
+  lifecycle {
+    ignore_changes = [
+      route
+    ]
   }
 
   tags = {

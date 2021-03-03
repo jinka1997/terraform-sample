@@ -5,8 +5,8 @@ resource "aws_security_group" "rds" {
 
     ingress  {
         description = "from ec2"
-        from_port   = 3306
-        to_port     = 3306
+        from_port   = 1433
+        to_port     = 1433
         protocol    = "TCP"
         security_groups = [aws_security_group.ec2.id]
     } 
