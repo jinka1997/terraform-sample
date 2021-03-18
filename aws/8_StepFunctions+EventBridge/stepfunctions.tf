@@ -28,7 +28,6 @@
       include_execution_data = true 
       level                  = "ALL" 
       log_destination        = format("%s:*", aws_cloudwatch_log_group.sample_log_group.arn)
-      #log_destination        = "arn:aws:logs:ap-northeast-1:581057229408:log-group:/aws/vendedlogs/states/MyStateMachine-Logs:*" 
     }
 }
 
@@ -37,7 +36,7 @@ resource "aws_cloudwatch_event_rule" "sample_rule" {
   event_bus_name      = "default"
   is_enabled          = true
   name                = "exec_stepfunctions" 
-  schedule_expression = "cron(55 1 * * ? *)" 
+  schedule_expression = "cron(15 4 * * ? *)" 
   tags                = {} 
 }
 
@@ -115,11 +114,8 @@ resource "aws_iam_role" "sample_event_invoke_role" {
 }
 
 resource "aws_cloudwatch_log_group" "sample_log_group" {
-  #arn               = "arn:aws:logs:ap-northeast-1:581057229408:log-group:/aws/vendedlogs/states/MyStateMachine-Logs" -> null
-  #id                = "/aws/vendedlogs/states/MyStateMachine-Logs" -> null
   name              = "/aws/vendedlogs/states/MyStateMachine-Logs" 
   retention_in_days = 0 
   tags              = {
-
   } 
 }
